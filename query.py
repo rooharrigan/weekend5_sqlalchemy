@@ -107,15 +107,35 @@ def get_models_between(start_year, end_year):
 
     Analagous SQL query:
         Select * FROM Models
-            WHERE Models.
+            WHERE Models.year > start_year AND Models.year < end_year;
 
     """
+    tweens = Model.query.filter((Model.year > start_year) & (Model.year < end_year)).all()
+    print tweens
+
+    #Can't figure out how to use between :(
+
 
 # -------------------------------------------------------------------
 
 # Part 3: Discussion Questions (Include your answers as comments.)
 
 # 1. What is the returned value and datatype of ``Brand.query.filter_by(name='Ford')``?
+###I don't know how to answer this.  It looks to be an object of the class 'flas_sqlalchemy.BaseQuery'
+### and it doesn't have any of the properties of an object created from the class Brand (you can't check it's ID with dot notation)
+### It should sort of point to the same object that means "the row in the Brands table that holds information about Ford" but it doesn't
+
+
 
 # 2. In your own words, what is an association table, and what *type* of relationship
 # does an association table manage?
+###Association tables exist to manage an otherwise many-to-many relationship
+###between two concepts in a database.  When you are unable to join two tables on
+###a primary/foreign key relationship, that might be a good indicator to make an
+###association table.  They are used to create two one-to-many relationships.
+###These allow the user to get at single instances of each concept on either
+###side of the table.
+###Sometimes they only contain two columns/fields, one for the primary key of each table
+
+
+

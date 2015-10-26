@@ -2,6 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
+
 # This is the connection to the SQLite database; we're getting this through
 # the Flask-SQLAlchemy helper library. On this, we can find the `session`
 # object, where we do most of our interactions (like committing, etc.)
@@ -20,8 +21,8 @@ class Model(db.Model):
     brand_name = db.Column(db.String(50), nullable=True)
     name = db.Column(db.String(50), nullable=False)
 
-    # def __repr__(self):
-    #     return "<Model(year=%d, brand_name=%s, name=%s)>" % self.year, self.brand_name, self.name
+    def __repr__(self): 
+        return "<Model year=%d brand_name=%s>" % (self.year, self.brand_name[:3])       #sliced this because the Citroen's umlaut was throwing a unicode error
 
 class Brand(db.Model):
 
@@ -32,8 +33,8 @@ class Brand(db.Model):
     headquarters = db.Column(db.Integer)
     discontinued = db.Column(db.Integer)
 
-    # def __repr__(self):
-    #     return "<Brand(name=%s, founded=%d, headquarters=%s)>" % self.name, self.founded, self.headquarters
+    def __repr__(self):
+        return "<Brand name=%s founded=%d>" % (self.name, self.founded)
 
 # End Part 1
 ##############################################################################
